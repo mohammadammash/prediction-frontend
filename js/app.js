@@ -6,6 +6,12 @@ const gender = document.getElementById("gender");
 const age = document.getElementById("age");
 const nationalities = document.getElementById("nationalities");
 
+// The Intl.DisplayNames object enables the consistent translation of language, region and script display names. (Reference: mdn-web docs)
+const regionNames = new Intl.DisplayNames(["de"], { type: "region" });
+
+
+
+// --------START OF API SECTION-------- //
 // We fetch from an API a dog image then show it, and we handle any error by showing a local dog image instead.
 const fetch_dog_image = async () => {
   try {
@@ -49,6 +55,33 @@ const fetch_age_API = async (inputName) => {
   }
 };
 
+// We fetch from an API the nationalities code then show the country name using regionNames object, and we handle any error by showing a little joke.
+const fetch_nationalities_API = async (inputName) => {
+  try {
+    const response = await fetch(
+      `https://api.nationalize.io/?name=${inputName}`
+    );
+    const data = await response.json();
+    const [region1, region2] = [
+      regionNames.of(data.country[0]["country_id"]),
+      regionNames.of(data.country[1]["country_id"]),
+    ];
+    for (let i = 0; i < 2; i++) {
+      if (i == 0) {
+        nationalities.textContent = `${region1}, or `;
+        continue;
+      }
+      nationalities.textContent += region2;
+    }
+  } catch {
+    nationalities.textContent = "a Great Country :)";
+  }
+};
+// --------END OF API SECTION--------//
+
+
+
+// --------START OF MAIN SECTION-------- //
 const generatePredictions = () => {
   // Get the inputValue(name) and validate first if it contains special characters or numbers
   const inputName = input.value;
@@ -63,9 +96,13 @@ const generatePredictions = () => {
   }
   fetch_gender_API(inputName);
   fetch_age_API(inputName);
+  fetch_nationalities_API(inputName);
 };
+// --------END OF MAIN SECTION-------- //
 
 
+
+//--------EVENTLISTENERS--------//
 // Each time our window loads
 window.addEventListener("load", fetch_dog_image);
 // Each time the Guess button clicked => generatePredictions()
