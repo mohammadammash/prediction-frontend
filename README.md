@@ -5,10 +5,12 @@ A prediction frontend website that shows the guess the user gender, age and nati
 HTML,CSS, JS
 
 # Project Screenshots(Mockup):
-When the website runs, this is the first thing will be shown:
-<img src="./styles/images/hero.png" alt="hero screenshot" title="hero_image">
-Pressing on (Let's Guess button) and after validating the input the gender, age, and nationalities guesses will be displayed under that button directly:
-<img src="./styles/images/interactive_hero.png" alt="interactive hero screenshot" title="hero_image">
+When the website runs, this is the first page shown:
+<img src="./styles/images/hero.png" alt="hero screenshot" title="hero_image" width=800>
+<br>
+After pressing on (Let's Guess button)=> The input will be validated, then the gender, age, and nationalities guesses will be displayed under that button directly:
+<br>
+<img src="./styles/images/interactive_hero.png" alt="interactive hero screenshot" title="hero_image" width=800>
 
 # Public APIs
 -Gender API: https://api.genderize.io/
@@ -19,3 +21,6 @@ Pressing on (Let's Guess button) and after validating the input the gender, age,
 # Installation and Setup Instructions
 git clone https://github.com/mohammadammash/prediction-frontend.git
 
+# Reach me
+Gmail: mohammadammash31@gmail.com
+Github: https://github.com/mohammadammash
