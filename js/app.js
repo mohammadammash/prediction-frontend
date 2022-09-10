@@ -36,6 +36,19 @@ const fetch_gender_API = async (inputName) => {
   }
 };
 
+// We fetch from an API the age then show it, and we handle any error by showing a random age.
+const fetch_age_API = async (inputName) => {
+  try {
+    const response = await fetch(`https://api.agify.io/?name=${inputName}`);
+    const data = await response.json();
+    if (!data.age) throw "empty";
+    age.textContent = data.age;
+  } catch {
+    const rand = Math.floor(Math.random() * (70 - 7)) + 7;
+    age.textContent = rand;
+  }
+};
+
 const generatePredictions = () => {
   // Get the inputValue(name) and validate first if it contains special characters or numbers
   const inputName = input.value;
@@ -49,6 +62,7 @@ const generatePredictions = () => {
     predictions.classList.remove("display-none");
   }
   fetch_gender_API(inputName);
+  fetch_age_API(inputName);
 };
 
 
