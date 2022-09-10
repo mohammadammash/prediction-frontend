@@ -90,13 +90,11 @@ const generatePredictions = () => {
     predictions.classList.add("display-none");
     return;
   }
-  // If input passed the validation we display the paragraph that will contain the results
-  if (predictions.classList.contains("display-none")) {
-    predictions.classList.remove("display-none");
-  }
   fetch_gender_API(inputName);
   fetch_age_API(inputName);
   fetch_nationalities_API(inputName);
+  // If input passed the validation and after retrieving data we display the paragraph that will contain the results
+  if (predictions.classList.contains("display-none")) predictions.classList.remove("display-none");
 };
 // --------END OF MAIN SECTION-------- //
 

@@ -16,7 +16,7 @@
 
 /* MAIN CONTENT */
 body {
-  background-color: #ecdcc9;
+  background-color: #2F4858;
   height: 100vh;
   display: flex;
 }
@@ -29,9 +29,10 @@ main {
   height: 80vh;
   width: 50%;
   margin: auto;
-  background-color: #4d243d;
-  color: #ecdcc9;
+  background-color: #F6AE2D;
+  color: #2F4858;
   text-align: center;
+  border: 1px solid #33658A;
 }
 main img {
   border-radius: 5px;
@@ -56,7 +57,8 @@ main .input {
   border: none;
 }
 .input .guess-btn {
-  background-color: #ecdcc9;
+  background-color: #2F4858;
+  color:#F6AE2D;
 }
 .input .guess-btn:hover {
   cursor: pointer;
