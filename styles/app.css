@@ -1,0 +1,84 @@
+/* CSS RESET */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  line-height: 1.2em;
+}
+
+/*  Utilities */
+.display-flex {
+  display: flex;
+}
+.display-none {
+  display: none;
+}
+
+/* MAIN CONTENT */
+body {
+  background-color: #2F4858;
+  height: 100vh;
+  display: flex;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: space-around;
+  height: 80vh;
+  width: 50%;
+  margin: auto;
+  background-color: #F6AE2D;
+  color: #2F4858;
+  text-align: center;
+  border: 1px solid #33658A;
+}
+main img {
+  border-radius: 5px;
+  margin: 10px 0;
+  width:70%;
+  height:50%;
+}
+main h1 {
+  width: 70%;
+}
+main > span {
+  width: 50%;
+  margin: 10px;
+}
+main .input {
+  width: 100%;
+}
+.input input,
+.input .guess-btn {
+  padding: 7px;
+  border-radius: 5px;
+  border: none;
+}
+.input .guess-btn {
+  background-color: #2F4858;
+  color:#F6AE2D;
+}
+.input .guess-btn:hover {
+  cursor: pointer;
+}
+.predictions {
+  width: 75%;
+  text-align: center;
+  font-size: 18px;
+  padding: 20px;
+}
+
+/* MEDIA QUERIES */
+@media only screen and (max-width: 800px) {
+  main {
+    width:75%;
+  }
+  main h1 {
+    font-size: 1.5rem;
+  }
+  main img {
+    width: 90%;
+  }
+}
