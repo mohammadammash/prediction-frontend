@@ -18,6 +18,24 @@ const fetch_dog_image = async () => {
   }
 };
 
+// We fetch from an API the gender then show it, and we handle any error by showing a random gender.
+const fetch_gender_API = async (inputName) => {
+  try {
+    const response = await fetch(`https://api.genderize.io/?name=${inputName}`);
+    const data = await response.json();
+    if (!data.gender) throw "empty";
+    gender.textContent = data.gender;
+  } catch {
+    const rand = Math.floor(Math.random() * 2) + 1;
+    console.log(rand);
+    if (rand == 1) {
+      gender.textContent = "male";
+    } else {
+      gender.textContent = "female";
+    }
+  }
+};
+
 const generatePredictions = () => {
   // Get the inputValue(name) and validate first if it contains special characters or numbers
   const inputName = input.value;
@@ -30,7 +48,10 @@ const generatePredictions = () => {
   if (predictions.classList.contains("display-none")) {
     predictions.classList.remove("display-none");
   }
+  fetch_gender_API(inputName);
 };
+
+
 // Each time our window loads
 window.addEventListener("load", fetch_dog_image);
 // Each time the Guess button clicked => generatePredictions()
