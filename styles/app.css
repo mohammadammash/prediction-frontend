@@ -1,0 +1,70 @@
+/* CSS RESET */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  line-height: 1.2em;
+}
+
+/*  Utilities */
+.display-flex {
+  display: flex;
+}
+.display-none {
+  display: none;
+}
+
+/* MAIN CONTENT */
+body {
+  background-color: #ecdcc9;
+  height: 100vh;
+  display: flex;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: space-around;
+  height: 80vh;
+  width: 50%;
+  margin: auto;
+  background-color: #4d243d;
+  color: #ecdcc9;
+  text-align: center;
+}
+main img {
+  border-radius: 5px;
+  margin: 10px 0;
+  width:60%;
+  height:50%;
+}
+main h1 {
+  width: 70%;
+}
+main > span {
+  width: 50%;
+  margin: 10px;
+}
+main .input {
+  width: 100%;
+}
+.input input,
+.input .guess-btn {
+  padding: 7px;
+  border-radius: 5px;
+  border: none;
+}
+.input .guess-btn {
+  background-color: #ecdcc9;
+}
+.input .guess-btn:hover {
+  cursor: pointer;
+}
+.predictions {
+  width: 75%;
+  text-align: center;
+  font-size: 18px;
+  padding: 20px;
+}
+
