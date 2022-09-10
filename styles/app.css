@@ -36,7 +36,7 @@ main {
 main img {
   border-radius: 5px;
   margin: 10px 0;
-  width:60%;
+  width:70%;
   height:50%;
 }
 main h1 {
@@ -68,3 +68,15 @@ main .input {
   padding: 20px;
 }
 
+/* MEDIA QUERIES */
+@media only screen and (max-width: 800px) {
+  main {
+    width:75%;
+  }
+  main h1 {
+    font-size: 1.5rem;
+  }
+  main img {
+    width: 90%;
+  }
+}
