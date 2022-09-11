@@ -9,6 +9,7 @@ const boredBtn = document.getElementById("bored");
 const boredContent = document.getElementById("bored-content");
 const loginBtn = document.getElementById("loginBtn");
 const signupBtn = document.getElementById("signupBtn");
+const authentication_section = document.getElementById("authentication");
 // login username and password
 const loginForm = document.getElementById("login-form");
 const username = document.getElementById("username");
@@ -109,6 +110,18 @@ const fetch_activity_API = async () => {
     boredContent.textContent = "Take a nap :p";
   }
 };
+
+// fetch the current IP of current machine(using axios):
+const fetch_IP = async (heading4) => {
+  let data;
+  try {
+    const res = await axios.get("https://api.ipify.org");
+    data = await res.data;
+  } catch (err) {
+    data = "Welcome Home!!";
+  }
+  return data;
+};
 // --------END OF API SECTION--------//
 
 // --------START OF MAIN SECTION-------- //
@@ -130,11 +143,17 @@ const generatePredictions = () => {
 // --------END OF MAIN SECTION-------- //
 
 // -------START OF AUTHENTICATION SECTION-------
-// Login User
-const after_authentication = () => {
-  loginForm.classList.add("display-none");
+// after user login/signup hide the buttons and fetch the IP-API, then Display it
+const after_authentication = async () => {
   signupForm.classList.add("display-none");
+  loginForm.classList.add("display-none");
+  const h4 = document.createElement("h4");
+  const data = await fetch_IP(h4);
+  h4.textContent = data;
+  authentication_section.appendChild(h4);
 };
+
+// Login User
 const userLogin = () => {
   let currentUser = username.value;
   let currentPass = password.value;
@@ -148,6 +167,8 @@ const userLogin = () => {
     console.log("No User Exists!!");
   }
 };
+
+// Register new User
 const registerUser = () => {
   let newUser = newUsername.value;
   let newPass = newPassword.value;
