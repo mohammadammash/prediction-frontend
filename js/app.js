@@ -7,11 +7,24 @@ const age = document.getElementById("age");
 const nationalities = document.getElementById("nationalities");
 const boredBtn = document.getElementById("bored");
 const boredContent = document.getElementById("bored-content");
+const authenticationBtn = document.getElementById("authenticationBtn");
+const authenticationForm = document.getElementById("authentication");
+const username = document.getElementById("username");
 
 // The Intl.DisplayNames object enables the consistent translation of language, region and script display names. (Reference: mdn-web docs)
 const regionNames = new Intl.DisplayNames(["de"], { type: "region" });
 
+// Intiate or load Local Storage
+const loadStorage = () => {
+  let usernames = localStorage.getItem("usernames");
+  if (!usernames) {
+    usernames = new Set();
+  } else {
+    usernames = JSON.parse(usernames);
+  }
 
+  return usernames;
+};
 
 // --------START OF API SECTION-------- //
 // We fetch from an API a dog image then show it, and we handle any error by showing a local dog image instead.
@@ -81,17 +94,15 @@ const fetch_nationalities_API = async (inputName) => {
 };
 
 // We fetch an API that show random activity -this time using AXIOS-
-const fetch_activity_API = async ()=>{
-    try{
-      const res = await axios.get("https://www.boredapi.com/api/activity");
-      boredContent.textContent = res.data.activity;
-    }
-    catch(err){
-      boredContent.textContent = 'Take a nap :p';
-    }
-}
+const fetch_activity_API = async () => {
+  try {
+    const res = await axios.get("https://www.boredapi.com/api/activity");
+    boredContent.textContent = res.data.activity;
+  } catch (err) {
+    boredContent.textContent = "Take a nap :p";
+  }
+};
 // --------END OF API SECTION--------//
-
 
 
 // --------START OF MAIN SECTION-------- //
@@ -107,15 +118,27 @@ const generatePredictions = () => {
   fetch_age_API(inputName);
   fetch_nationalities_API(inputName);
   // If input passed the validation and after retrieving data we display the paragraph that will contain the results
-  if (predictions.classList.contains("display-none")) predictions.classList.remove("display-none");
+  if (predictions.classList.contains("display-none"))
+    predictions.classList.remove("display-none");
 };
 // --------END OF MAIN SECTION-------- //
 
+// Authenticating User
+const authenticateUser = () => {
+  let currentUser = username.value;
+  if (currentUser in usernames) {
+    console.log(`Welcome Again ${currentUser}`);
+  } else {
+    console.log(`Hello ${currentUser}`);
+    usernames.add(currentUser);
+    localStorage.setItem("usernames", JSON.stringify(usernames));
+  }
+};
 
 
 //--------EVENTLISTENERS--------//
-// Each time our window loads
 window.addEventListener("load", fetch_dog_image);
-// Each time the Guess button clicked => generatePredictions()
+var usernames = window.addEventListener("load", loadStorage);
 submitBtn.addEventListener("click", generatePredictions);
 boredBtn.addEventListener("click", fetch_activity_API);
+authenticationBtn.addEventListener("click", authenticateUser);
