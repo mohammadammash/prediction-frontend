@@ -19,6 +19,7 @@ const loadStorage = () => {
   let usernames = localStorage.getItem("usernames");
   if (!usernames) {
     usernames = new Set();
+    localStorage.setItem("usernames",JSON.stringify(usernames));
   } else {
     usernames = JSON.parse(usernames);
   }
