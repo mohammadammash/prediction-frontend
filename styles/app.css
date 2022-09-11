@@ -17,7 +17,8 @@
   background-color: #2F4858;
   color:#F6AE2D;
   cursor: pointer;
-  padding:8px 18px;
+  height: 40px;
+  width:100px;
   border-radius: 5px;
 }
 
@@ -50,6 +51,12 @@ main {
   color: #2F4858;
   text-align: center;
   border: 1px solid #33658A;
+}
+.authentication{
+  height:15vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 main img {
   border-radius: 5px;

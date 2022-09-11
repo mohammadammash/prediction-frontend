@@ -124,7 +124,7 @@ const generatePredictions = () => {
 };
 // --------END OF MAIN SECTION-------- //
 
-// Authenticating User
+// Login User
 const login = () => {
   let currentUser = username.value;
   let currentPass = password.value;
