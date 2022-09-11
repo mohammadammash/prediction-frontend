@@ -11,6 +11,9 @@ const loginBtn = document.getElementById("loginBtn");
 const signupBtn = document.getElementById("signupBtn");
 const authentication_section = document.getElementById("authentication");
 // login username and password
+const authenticationLabels = document.getElementsByClassName(
+  "authentication-label"
+);
 const loginForm = document.getElementById("login-form");
 const username = document.getElementById("username");
 const password = document.getElementById("password");
@@ -147,6 +150,8 @@ const generatePredictions = () => {
 const after_authentication = async () => {
   signupForm.classList.add("display-none");
   loginForm.classList.add("display-none");
+  for (let i = 0; i < authenticationLabels.length; i++)
+    authenticationLabels[i].classList.add("display-none");
   const h4 = document.createElement("h4");
   const data = await fetch_IP(h4);
   h4.textContent = data;
