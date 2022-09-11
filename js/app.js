@@ -7,25 +7,24 @@ const age = document.getElementById("age");
 const nationalities = document.getElementById("nationalities");
 const boredBtn = document.getElementById("bored");
 const boredContent = document.getElementById("bored-content");
-const authenticationBtn = document.getElementById("authenticationBtn");
+const loginBtn = document.getElementById("loginBtn");
 const authenticationForm = document.getElementById("authentication");
 const username = document.getElementById("username");
+const password = document.getElementById("password");
 
 // The Intl.DisplayNames object enables the consistent translation of language, region and script display names. (Reference: mdn-web docs)
 const regionNames = new Intl.DisplayNames(["de"], { type: "region" });
 
-var usernames = localStorage.getItem('usernames');
+var data = localStorage.getItem("data");
 
 // Intiate or load Local Storage
 const loadStorage = () => {
-  usernames = localStorage.getItem("usernames");
-  if (!usernames) {
-    usernames = new Set();
-    localStorage.setItem("usernames",JSON.stringify(usernames));
+  if (!data) {
+    data = {}
+    localStorage.setItem("data",JSON.stringify(data));
   } else {
-    usernames = JSON.parse(usernames);
+    data = JSON.parse(data);
   }
-
 };
 
 // --------START OF API SECTION-------- //
@@ -126,16 +125,15 @@ const generatePredictions = () => {
 // --------END OF MAIN SECTION-------- //
 
 // Authenticating User
-const authenticateUser = () => {
+const login = () => {
   let currentUser = username.value;
-  console.log(usernames)
-  console.log(currentUser)
-  if (currentUser in usernames) {
-    console.log(`Welcome Again ${currentUser}`);
+  let currentPass = password.value;
+  if(!currentUser || !currentPass) return;
+  if (data[currentUser]) {
+    if(currentPass == data[currentUser]) console.log(`Welcome Again ${currentUser}`);
+    else console.log('Wrong Password Dude!')
   } else {
-    console.log(`Hello ${currentUser}`);
-    usernames.add(currentUser);
-    localStorage.setItem("usernames", JSON.stringify(usernames));
+    console.log("No User Exists!!");
   }
 };
 
@@ -145,4 +143,4 @@ window.addEventListener("load", fetch_dog_image);
 window.addEventListener("load", loadStorage);
 submitBtn.addEventListener("click", generatePredictions);
 boredBtn.addEventListener("click", fetch_activity_API);
-authenticationBtn.addEventListener("click", authenticateUser);
+loginBtn.addEventListener("click", login);
