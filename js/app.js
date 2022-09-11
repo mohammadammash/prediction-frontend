@@ -8,23 +8,29 @@ const nationalities = document.getElementById("nationalities");
 const boredBtn = document.getElementById("bored");
 const boredContent = document.getElementById("bored-content");
 const loginBtn = document.getElementById("loginBtn");
-const authenticationForm = document.getElementById("authentication");
+const signupBtn = document.getElementById("signupBtn");
+// login username and password
+const loginForm = document.getElementById("login-form");
 const username = document.getElementById("username");
 const password = document.getElementById("password");
+// registration username and password
+const signupForm = document.getElementById("signup-form");
+const newUsername = document.getElementById("new-username");
+const newPassword = document.getElementById("new-password");
 
 // The Intl.DisplayNames object enables the consistent translation of language, region and script display names. (Reference: mdn-web docs)
 const regionNames = new Intl.DisplayNames(["de"], { type: "region" });
 
-var data = localStorage.getItem("data");
-
 // Intiate or load Local Storage
+var data = localStorage.getItem("data");
 const loadStorage = () => {
   if (!data) {
-    data = {}
-    localStorage.setItem("data",JSON.stringify(data));
+    data = {};
+    localStorage.setItem("data", JSON.stringify(data));
   } else {
     data = JSON.parse(data);
   }
+  console.log(data);
 };
 
 // --------START OF API SECTION-------- //
@@ -105,7 +111,6 @@ const fetch_activity_API = async () => {
 };
 // --------END OF API SECTION--------//
 
-
 // --------START OF MAIN SECTION-------- //
 const generatePredictions = () => {
   // Get the inputValue(name) and validate first if it contains special characters or numbers
@@ -124,23 +129,45 @@ const generatePredictions = () => {
 };
 // --------END OF MAIN SECTION-------- //
 
+// -------START OF AUTHENTICATION SECTION-------
 // Login User
-const login = () => {
+const after_authentication = () => {
+  loginForm.classList.add("display-none");
+  signupForm.classList.add("display-none");
+};
+const userLogin = () => {
   let currentUser = username.value;
   let currentPass = password.value;
-  if(!currentUser || !currentPass) return;
+  if (!currentUser || !currentPass) return;
   if (data[currentUser]) {
-    if(currentPass == data[currentUser]) console.log(`Welcome Again ${currentUser}`);
-    else console.log('Wrong Password Dude!')
+    if (currentPass == data[currentUser]) {
+      after_authentication();
+      console.log(`Welcome Again ${currentUser}`);
+    } else console.log("Wrong Password Dude!");
   } else {
     console.log("No User Exists!!");
   }
 };
-
+const registerUser = () => {
+  let newUser = newUsername.value;
+  let newPass = newPassword.value;
+  if (!newUser || !newPass) return;
+  if (data[newUser]) {
+    console.log("User already found! Choose different username!");
+    return;
+  } else {
+    after_authentication();
+    data[newUser] = newPass;
+    localStorage.setItem("data", JSON.stringify(data));
+    console.log(`Welcome to the family: ${newUser}`);
+  }
+};
+// -------END OF AUTHENTICATION SECTION-------
 
 //--------EVENTLISTENERS--------//
 window.addEventListener("load", fetch_dog_image);
 window.addEventListener("load", loadStorage);
 submitBtn.addEventListener("click", generatePredictions);
 boredBtn.addEventListener("click", fetch_activity_API);
-loginBtn.addEventListener("click", login);
+loginBtn.addEventListener("click", userLogin);
+signupBtn.addEventListener("click", registerUser);

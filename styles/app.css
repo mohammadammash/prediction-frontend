@@ -17,7 +17,7 @@
   background-color: #2F4858;
   color:#F6AE2D;
   cursor: pointer;
-  height: 40px;
+  height: 35px;
   width:100px;
   border-radius: 5px;
 }
@@ -45,7 +45,7 @@ main {
   align-items: center;
   justify-content: space-around;
   height: 80vh;
-  width: 50%;
+  width: 40%;
   margin: auto;
   background-color: #F6AE2D;
   color: #2F4858;
