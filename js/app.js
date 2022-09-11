@@ -5,6 +5,8 @@ const predictions = document.getElementById("predictions");
 const gender = document.getElementById("gender");
 const age = document.getElementById("age");
 const nationalities = document.getElementById("nationalities");
+const boredBtn = document.getElementById("bored");
+const boredContent = document.getElementById("bored-content");
 
 // The Intl.DisplayNames object enables the consistent translation of language, region and script display names. (Reference: mdn-web docs)
 const regionNames = new Intl.DisplayNames(["de"], { type: "region" });
@@ -77,6 +79,17 @@ const fetch_nationalities_API = async (inputName) => {
     nationalities.textContent = "a Great Country :)";
   }
 };
+
+// We fetch an API that show random activity -this time using AXIOS-
+const fetch_activity_API = async ()=>{
+    try{
+      const res = await axios.get("https://www.boredapi.com/api/activity");
+      boredContent.textContent = res.data.activity;
+    }
+    catch(err){
+      boredContent.textContent = 'Take a nap :p';
+    }
+}
 // --------END OF API SECTION--------//
 
 
@@ -105,3 +118,4 @@ const generatePredictions = () => {
 window.addEventListener("load", fetch_dog_image);
 // Each time the Guess button clicked => generatePredictions()
 submitBtn.addEventListener("click", generatePredictions);
+boredBtn.addEventListener("click", fetch_activity_API);

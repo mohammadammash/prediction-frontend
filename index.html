@@ -9,6 +9,8 @@
   </head>
   <body>
     <main>
+      <button class="btn" id="bored">Bored ?</button>
+      <p id="bored-content"></p>
       <img
         id="dog-image"
         src="./styles/images/dogs.jfif"
@@ -21,13 +23,14 @@
       <span> Oh, I Bet We Can :)</span>
       <div class="input">
         <input type="text" id="name" placeholder="Name" />
-        <button class="guess-btn" id="submit-btn">Let's Guess!</button>
+        <button class="btn" id="submit-btn">Let's Guess!</button>
       </div>
       <p id="predictions" class="predictions display-none">
         You're a <span id="age"></span> years old <span id="gender"></span> from
         <span id="nationalities" a></span>
       </p>
     </main>
-    <script src="js/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="js/app.js" type="module"></script>
   </body>
 </html>
