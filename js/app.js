@@ -14,9 +14,11 @@ const username = document.getElementById("username");
 // The Intl.DisplayNames object enables the consistent translation of language, region and script display names. (Reference: mdn-web docs)
 const regionNames = new Intl.DisplayNames(["de"], { type: "region" });
 
+var usernames = localStorage.getItem('usernames');
+
 // Intiate or load Local Storage
 const loadStorage = () => {
-  let usernames = localStorage.getItem("usernames");
+  usernames = localStorage.getItem("usernames");
   if (!usernames) {
     usernames = new Set();
     localStorage.setItem("usernames",JSON.stringify(usernames));
@@ -24,7 +26,6 @@ const loadStorage = () => {
     usernames = JSON.parse(usernames);
   }
 
-  return usernames;
 };
 
 // --------START OF API SECTION-------- //
@@ -127,6 +128,8 @@ const generatePredictions = () => {
 // Authenticating User
 const authenticateUser = () => {
   let currentUser = username.value;
+  console.log(usernames)
+  console.log(currentUser)
   if (currentUser in usernames) {
     console.log(`Welcome Again ${currentUser}`);
   } else {
@@ -139,7 +142,7 @@ const authenticateUser = () => {
 
 //--------EVENTLISTENERS--------//
 window.addEventListener("load", fetch_dog_image);
-var usernames = window.addEventListener("load", loadStorage);
+window.addEventListener("load", loadStorage);
 submitBtn.addEventListener("click", generatePredictions);
 boredBtn.addEventListener("click", fetch_activity_API);
 authenticationBtn.addEventListener("click", authenticateUser);

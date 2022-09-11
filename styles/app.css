@@ -26,6 +26,16 @@ body {
   background-color: #2F4858;
   height: 100vh;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+body>form{
+  margin: auto 0;
+}
+.authentication-btn{
+  color:#2F4858;
+  background-color: #F6AE2D;
 }
 main {
   display: flex;
@@ -57,7 +67,7 @@ main > span {
 main .input {
   width: 100%;
 }
-.input input,
+input,
 .input .guess-btn {
   padding: 7px;
   border-radius: 5px;
